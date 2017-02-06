@@ -2,8 +2,8 @@
 
 **Файловая структура**
 
-```html
-<pre>
+```
+
   async_task  |
               |_ callback |
               |           |_ data |
@@ -40,5 +40,5 @@
               |           |_ twofiles.js
               |           |_ twofilesparal.js
               |           |_ twoonefiles.js
-</pre>
+
 ```
