@@ -11,23 +11,35 @@ var dirPath = __dirname + '/data/';
 */
 
 function twoFilesParal(done) {
+  var success;
+
   setTimeout(() => {
     fs.readFile(dirPath + 'data_1.json', 'utf-8', function(err, data) { // будет прочитан аторым
-      if (err) {
-        done(err);
+      if (success) {
+        var data = success + data;
+        done(err, data);
       } else {
-        done(null, data);
+        success = data;
       }
     });
   }, 1000);
 
-  fs.readFile(dirPath + 'data_2.json', 'utf-8', function(err, data) { // будет прочитан первым 
-    if (err) {
-      done(err);
+  fs.readFile(dirPath + 'data_2.json', 'utf-8', function(err, data) { // будет прочитан первым
+    if (success) {
+      var data = success + data;
+      done(err, data);
     } else {
-      done(null, data);
+      success = data;
     }
   });
 }
+
+twoFilesParal(function(err, data) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(data);
+  }
+})
 
 module.exports = twoFilesParal;
